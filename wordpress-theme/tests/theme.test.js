@@ -16,7 +16,7 @@ test("theme has the required WordPress entry points and assets", () => {
   assert.match(fs.readFileSync(path.join(theme, "style.css"), "utf8"), /Theme Name: HomeCare Physio/);
   assert.ok(fs.existsSync(path.join(theme, "assets", "css", "site.css")));
   assert.ok(fs.existsSync(path.join(theme, "assets", "js", "site.js")));
-  for (const image of ["home-banner-v2.jpg", "home-visit-hero.jpg", "physio-mobility.jpg", "physio-consultation.jpg"]) {
+  for (const image of ["home-banner-v2.jpg", "home-visit-hero.jpg", "physio-mobility.jpg", "physio-consultation.jpg", "page-home-care.jpg", "page-team.jpg", "page-outdoor.jpg"]) {
     assert.ok(fs.existsSync(path.join(theme, "assets", "images", image)), `missing ${image}`);
   }
 });
@@ -72,3 +72,29 @@ test("home page follows the reference structure and uses original physiotherapy 
   assert.match(footer, /Useful information/);
   assert.match(footer, /Terms/);
 });
+
+test("inner pages have accessible photo heroes, breadcrumbs, enquiries and shared motion", () => {
+  const page = fs.readFileSync(path.join(theme, "page.php"), "utf8");
+  const styles = fs.readFileSync(path.join(theme, "assets", "css", "site.css"), "utf8");
+  const script = fs.readFileSync(path.join(theme, "assets", "js", "site.js"), "utf8");
+  for (const slug of ["how-we-help", "services", "our-physios", "pricing", "about-us", "conditions", "locations", "faqs", "our-approach", "testimonials", "join-our-team", "contact", "articles", "terms", "privacy"]) {
+    assert.match(page, new RegExp(`'${slug}'\\s*=>\\s*array\\(\\s*'image'`), `${slug} needs an image banner`);
+  }
+  assert.match(page, /breadcrumbs/);
+  assert.match(page, /homecare_page_visuals/);
+  assert.match(page, /page-hero-image/);
+  assert.match(page, /alt=/);
+  assert.match(page, /inner-page-cta/);
+  assert.match(page, /page-home-care\.jpg/);
+  assert.match(page, /page-team\.jpg/);
+  assert.match(page, /page-outdoor\.jpg/);
+  assert.match(styles, /\.page-hero-grid/);
+  assert.match(styles, /\.entry-content \.card-grid/);
+  assert.match(script, /\.entry-content > section/);
+  assert.match(styles, /@keyframes page-image-in/);
+  assert.match(styles, /@media\(prefers-reduced-motion:reduce\)\{\.has-page-visual/);
+  const seeder = fs.readFileSync(path.join(theme, "seed-pages.php"), "utf8");
+  assert.match(seeder, /A suggested care journey based on the reference pattern/);
+  assert.match(seeder, /Draft service categories informed by common home-physiotherapy pathways/);
+});
+

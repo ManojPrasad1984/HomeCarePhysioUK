@@ -34,7 +34,7 @@
 }());
 
 (function () {
-  const sections = document.querySelectorAll(".front-content > section");
+  const sections = document.querySelectorAll(".front-content > section, .entry-content > section, .page-main > .inner-page-cta");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (!sections.length || reduceMotion || !("IntersectionObserver" in window)) return;
@@ -52,3 +52,4 @@
     observer.observe(section);
   });
 }());
+
