@@ -61,9 +61,14 @@ test("home page follows the reference structure and uses original physiotherapy 
   assert.match(styles, /color:var\(--orange\)/);
   assert.match(styles, /font-family:var\(--sans\)/);
   assert.match(styles, /font-family:var\(--serif\)/);
+  assert.match(styles, /\.scroll-reveal\.is-visible/);
+  assert.match(styles, /max-width:1500px/);
+  assert.match(script, /IntersectionObserver/);
+  assert.match(seed, /careers-callout/);
   assert.match(script, /strength and balance/);
   assert.match(seed, /condition-strip/);
   assert.match(seed, /feature-split/);
+  assert.match(seed, /process-steps/);
   assert.match(footer, /Useful information/);
   assert.match(footer, /Terms/);
 });
