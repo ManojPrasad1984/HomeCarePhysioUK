@@ -29,6 +29,10 @@ test("contains the expected 16 separate page entry points", () => {
   assert.equal(htmlFiles.length, 16);
 });
 
+test("home page receives a distinct browser title", () => {
+  assert.equal(render("index.html").title, "Physiotherapy at home | HomeCarePhysioUK");
+});
+
 for (const file of htmlFiles) {
   test(`${file} renders a complete page shell`, () => {
     const result = render(file);

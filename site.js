@@ -189,7 +189,7 @@ const mainContent = page.home
 function sectionHeading(kicker, heading) { return `<div class="section-heading"><p class="eyebrow">${kicker}</p><h2>${heading}</h2></div>`; }
 function bannerMarkup(data) { if (!data) return ""; return `<section class="contact-banner"><div><p class="eyebrow">${data[0]}</p><p>${data[1]}</p></div>${link(`${data[3]} <span aria-hidden="true">→</span>`, data[2], "button button-light")}</section>`; }
 
-document.title = `${page.kicker} | HomeCarePhysioUK`;
+document.title = page.home ? "Physiotherapy at home | HomeCarePhysioUK" : `${page.kicker} | HomeCarePhysioUK`;
 document.querySelector("#site").innerHTML = `
   <header class="site-header"><a class="brand" href="index.html" aria-label="HomeCarePhysioUK home"><span class="brand-mark" aria-hidden="true">＋</span><span>HomeCare<span class="brand-light">PhysioUK</span></span></a>
     <nav aria-label="Main navigation"><a href="index.html">Home</a><details class="nav-menu"><summary>Support</summary><div>${link("How We Help", "how-we-help.html")}${link("Services", "services.html")}${link("Conditions", "conditions.html")}${link("Locations", "locations.html")}</div></details><a href="our-physios.html">Our Physios</a><a href="pricing.html">Pricing</a><a href="about-us.html">About</a>${link("Contact <span aria-hidden=\"true\">↗</span>", "contact.html", "nav-cta")}</nav>
