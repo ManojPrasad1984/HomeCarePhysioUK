@@ -133,7 +133,7 @@ function homecarephysio_seed_menu( $name, $slugs, $page_ids ) {
 	return (int) $menu_id;
 }
 
-$primary_menu_id = homecarephysio_seed_menu( 'HomeCare Primary', array( 'how-we-help', 'services', 'our-physios', 'pricing', 'about-us', 'contact' ), $page_ids );
+$primary_menu_id = homecarephysio_seed_menu( 'HomeCare Primary', array( 'how-we-help', 'services', 'our-physios', 'pricing', 'about-us' ), $page_ids );
 $footer_menu_id  = homecarephysio_seed_menu( 'HomeCare Sitemap', array_keys( $page_ids ), $page_ids );
 set_theme_mod(
 	'nav_menu_locations',

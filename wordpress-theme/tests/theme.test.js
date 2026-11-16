@@ -16,7 +16,7 @@ test("theme has the required WordPress entry points and assets", () => {
   assert.match(fs.readFileSync(path.join(theme, "style.css"), "utf8"), /Theme Name: HomeCare Physio/);
   assert.ok(fs.existsSync(path.join(theme, "assets", "css", "site.css")));
   assert.ok(fs.existsSync(path.join(theme, "assets", "js", "site.js")));
-  for (const image of ["home-visit-hero.jpg", "physio-mobility.jpg", "physio-consultation.jpg"]) {
+  for (const image of ["home-banner-v2.jpg", "home-visit-hero.jpg", "physio-mobility.jpg", "physio-consultation.jpg"]) {
     assert.ok(fs.existsSync(path.join(theme, "assets", "images", image)), `missing ${image}`);
   }
 });
@@ -48,8 +48,16 @@ test("home page follows the reference structure and uses original physiotherapy 
   const frontPage = fs.readFileSync(path.join(theme, "front-page.php"), "utf8");
   const seed = fs.readFileSync(path.join(theme, "seed-pages.php"), "utf8");
   const footer = fs.readFileSync(path.join(theme, "footer.php"), "utf8");
-  assert.match(frontPage, /Physiotherapy/);
-  assert.match(frontPage, /home-visit-hero\.jpg/);
+  const header = fs.readFileSync(path.join(theme, "header.php"), "utf8");
+  const styles = fs.readFileSync(path.join(theme, "assets", "css", "site.css"), "utf8");
+  const script = fs.readFileSync(path.join(theme, "assets", "js", "site.js"), "utf8");
+  assert.match(frontPage, /Physiotherapy at home/);
+  assert.match(frontPage, /home-banner-v2\.jpg/);
+  assert.match(frontPage, /hero-rotating-phrase/);
+  assert.match(header, /header-enquire/);
+  assert.match(styles, /hero-banner/);
+  assert.match(styles, /prefers-reduced-motion/);
+  assert.match(script, /strength and balance/);
   assert.match(seed, /condition-strip/);
   assert.match(seed, /feature-split/);
   assert.match(footer, /Useful information/);

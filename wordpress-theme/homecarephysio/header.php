@@ -3,7 +3,7 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="theme-color" content="#f7f8f4">
+	<meta name="theme-color" content="#243b5b">
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -12,7 +12,7 @@
 <header class="site-header">
 	<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php esc_attr_e( 'HomeCarePhysioUK home', 'homecarephysio' ); ?>">
 		<span class="brand-mark" aria-hidden="true">＋</span>
-		<span>HomeCare<span class="brand-light">PhysioUK</span></span>
+		<span class="brand-wordmark"><span>HOMECARE<span class="brand-light">PHYSIO UK</span></span><small><?php esc_html_e( 'Bringing therapy to you', 'homecarephysio' ); ?></small></span>
 	</a>
 	<button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
 		<span><?php esc_html_e( 'Menu', 'homecarephysio' ); ?></span>
@@ -30,4 +30,8 @@
 		);
 		?>
 	</nav>
+	<div class="header-actions">
+		<a class="header-enquire" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><span class="header-chat-icon" aria-hidden="true"></span><?php esc_html_e( 'Enquire Now', 'homecarephysio' ); ?></a>
+		<a class="header-contact" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact us', 'homecarephysio' ); ?></a>
+	</div>
 </header>
