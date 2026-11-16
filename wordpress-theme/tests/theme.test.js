@@ -57,6 +57,10 @@ test("home page follows the reference structure and uses original physiotherapy 
   assert.match(header, /header-enquire/);
   assert.match(styles, /hero-banner/);
   assert.match(styles, /prefers-reduced-motion/);
+  assert.match(styles, /background:var\(--ink\)/);
+  assert.match(styles, /color:var\(--orange\)/);
+  assert.match(styles, /font-family:var\(--sans\)/);
+  assert.match(styles, /font-family:var\(--serif\)/);
   assert.match(script, /strength and balance/);
   assert.match(seed, /condition-strip/);
   assert.match(seed, /feature-split/);
