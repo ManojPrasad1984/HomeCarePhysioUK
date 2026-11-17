@@ -1,8 +1,8 @@
 const pages = {
   home: {
-    title: "Physiotherapy at home",
+    title: "Physiotherapy, shaped around home.",
     kicker: "HomeCarePhysioUK",
-    lead: "Support for <strong>strength and balance</strong>",
+    lead: "Explore a more personal approach to physiotherapy, with care planned around your goals and everyday surroundings.",
     home: true,
     cards: [
       ["How we help", "Explore ways home physiotherapy may support movement, confidence and day-to-day goals.", "how-we-help.html"],
@@ -184,15 +184,15 @@ const stepMarkup = page.steps ? `<ol class="steps">${page.steps.map(([number, ti
 const faqMarkup = page.faqs ? `<div class="faq-list">${page.faqs.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</div>` : "";
 const sectionsMarkup = page.sections ? `<div class="text-sections">${page.sections.map(([title, text]) => `<section><h2>${title}</h2><p>${text}</p></section>`).join("")}</div>` : "";
 const mainContent = page.home
-  ? `<section class="home-hero home-hero-image" aria-label="Physiotherapy at home"><img class="hero-banner-image" src="wordpress-theme/homecarephysio/assets/images/home-banner-v2.jpg" alt="A woman relaxing at home" fetchpriority="high"><div class="hero-shade"></div><div class="hero-copy"><p class="eyebrow"><span></span>${page.kicker}</p><h1>${page.title}</h1><p class="lead">${page.lead}</p><div class="hero-actions">${link("Explore our services <span aria-hidden=\"true\">→</span>", "services.html", "button")} ${link("How we help", "how-we-help.html", "text-link")}</div><p class="small-note">Thoughtful support. Clear next steps.</p></div></section>${sectionHeading("A more personal kind of care", "Explore the site")}${cardMarkup(page.cards)}${bannerMarkup(page.banner)}`
+  ? `<section class="home-hero"><div class="hero-copy"><p class="eyebrow"><span></span>${page.kicker}</p><h1>${page.title}</h1><p class="lead">${page.lead}</p><div class="hero-actions">${link("Explore our services <span aria-hidden=\"true\">→</span>", "services.html", "button")} ${link("How we help", "how-we-help.html", "text-link")}</div><p class="small-note">Thoughtful support. Clear next steps.</p></div><div class="home-visual" role="img" aria-label="Illustration of a calm, sunlit home"><div class="visual-sun"></div><div class="visual-window"><i></i><i></i><i></i><i></i></div><div class="visual-plant"><i></i><i></i><i></i><b></b></div><div class="visual-chair"><i></i><b></b></div><div class="visual-rug"></div><span class="visual-caption">Physiotherapy, where you feel at home</span></div></section>${sectionHeading("A more personal kind of care", "Explore the site")}${cardMarkup(page.cards)}${bannerMarkup(page.banner)}`
   : `<section class="page-hero"><p class="eyebrow"><span></span>${page.kicker}</p><h1>${page.title}</h1><p class="lead">${page.lead}</p></section>${noticeMarkup}${page.cards ? `${sectionHeading("Explore", page.kicker)}${cardMarkup(page.cards)}` : ""}${stepMarkup}${faqMarkup}${sectionsMarkup}${page.banner ? bannerMarkup(page.banner) : ""}`;
 function sectionHeading(kicker, heading) { return `<div class="section-heading"><p class="eyebrow">${kicker}</p><h2>${heading}</h2></div>`; }
 function bannerMarkup(data) { if (!data) return ""; return `<section class="contact-banner"><div><p class="eyebrow">${data[0]}</p><p>${data[1]}</p></div>${link(`${data[3]} <span aria-hidden="true">→</span>`, data[2], "button button-light")}</section>`; }
 
 document.title = page.home ? "Physiotherapy at home | HomeCarePhysioUK" : `${page.kicker} | HomeCarePhysioUK`;
 document.querySelector("#site").innerHTML = `
-  <header class="site-header"><a class="brand" href="index.html" aria-label="HomeCarePhysioUK home"><span class="brand-mark" aria-hidden="true">＋</span><span class="brand-wordmark"><span>HOMECARE<span class="brand-light">PHYSIO UK</span></span><small>Bringing therapy to you</small></span></a>
-    <nav aria-label="Main navigation"><a href="how-we-help.html">How We Help</a><a href="services.html">Services</a><a href="our-physios.html">Our Physios</a><a href="pricing.html">Pricing</a><a href="about-us.html">About Us</a>${link("Enquire Now", "contact.html", "nav-cta")}${link("+91 97666 27404", "tel:+919766627404", "nav-phone")}</nav>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="HomeCarePhysioUK home"><span class="brand-mark" aria-hidden="true">＋</span><span>HomeCare<span class="brand-light">PhysioUK</span></span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><details class="nav-menu"><summary>Support</summary><div>${link("How We Help", "how-we-help.html")}${link("Services", "services.html")}${link("Conditions", "conditions.html")}${link("Locations", "locations.html")}</div></details><a href="our-physios.html">Our Physios</a><a href="pricing.html">Pricing</a><a href="about-us.html">About</a>${link("Contact <span aria-hidden=\"true\">↗</span>", "contact.html", "nav-cta")}</nav>
   </header>
   <main id="main">${mainContent}</main>
   <footer><div class="footer-top"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">＋</span><span>HomeCare<span class="brand-light">PhysioUK</span></span></a><p>Home-based physiotherapy<br>planned around everyday life.</p></div><div class="footer-links">${links.map(([label, href]) => link(label, href)).join("")}</div><div class="footer-bottom"><span>© ${new Date().getFullYear()} HomeCarePhysioUK</span><span>Information on this draft site is subject to confirmation.</span></div></footer>`;

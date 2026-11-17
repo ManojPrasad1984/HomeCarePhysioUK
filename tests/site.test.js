@@ -52,7 +52,6 @@ test("all generated navigation and card links point to existing pages", () => {
   for (const file of htmlFiles) {
     const { markup } = render(file);
     for (const [, href] of markup.matchAll(/href="([^"]+)"/g)) {
-      if (/^(?:https?:|mailto:|tel:|#)/i.test(href)) continue;
       assert.ok(fs.existsSync(path.join(root, href)), `${file} contains a broken link: ${href}`);
     }
   }
