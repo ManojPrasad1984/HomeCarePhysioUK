@@ -21,6 +21,19 @@ get_header();
 		<div><p class="eyebrow"><?php esc_html_e( 'A sample physiotherapy session', 'homecarephysio' ); ?></p><h2 id="home-video-title"><?php esc_html_e( 'See movement support in action.', 'homecarephysio' ); ?></h2><p><?php esc_html_e( 'Illustrative sample video from the supplied website files. This is not a patient testimonial.', 'homecarephysio' ); ?></p></div>
 		<figure class="home-video-frame"><video controls playsinline preload="metadata" poster="<?php echo esc_url( get_theme_file_uri( '/assets/images/physio-1-poster.jpg' ) ); ?>" aria-label="<?php esc_attr_e( 'Sample physiotherapy exercise session', 'homecarephysio' ); ?>"><source src="<?php echo esc_url( get_theme_file_uri( '/assets/videos/physio-1-sample.mp4' ) ); ?>" type="video/mp4"></video><figcaption><?php esc_html_e( 'Sample demonstration only; replace with an approved patient video when available.', 'homecarephysio' ); ?></figcaption></figure>
 	</section>
+	<?php $google_reviews_embed = get_option( 'homecarephysio_google_reviews_embed', '' ); ?>
+	<section class="trusted-patients content-wrap" aria-labelledby="trusted-patients-title">
+		<div class="trusted-patients-heading"><p class="eyebrow"><?php esc_html_e( 'Patient feedback', 'homecarephysio' ); ?></p><h2 id="trusted-patients-title"><?php esc_html_e( 'Trusted by Our Patients', 'homecarephysio' ); ?></h2><p><?php esc_html_e( 'Read feedback directly on our Google Business Profile.', 'homecarephysio' ); ?></p></div>
+		<?php if ( $google_reviews_embed ) : ?>
+			<div class="google-reviews-frame"><iframe src="<?php echo esc_url( $google_reviews_embed ); ?>" title="<?php esc_attr_e( 'HomeCarePhysioUK Google Business Profile and patient reviews', 'homecarephysio' ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+		<?php else : ?>
+			<div class="google-reviews-pending"><span class="google-mark" aria-hidden="true">G</span><div><h3><?php esc_html_e( 'Google reviews will appear here', 'homecarephysio' ); ?></h3><p><?php esc_html_e( 'Connect the verified HomeCarePhysioUK Google Business Profile in Settings → HomeCare Reviews to display its live profile and reviews.', 'homecarephysio' ); ?></p></div></div>
+		<?php endif; ?>
+	</section>
+	<section class="trust-video content-wrap" aria-labelledby="trust-video-title">
+		<div class="trust-video-copy"><p class="eyebrow"><?php esc_html_e( 'Professional standards', 'homecarephysio' ); ?></p><h2 id="trust-video-title"><?php esc_html_e( 'Physiotherapy you can trust.', 'homecarephysio' ); ?></h2><p><?php esc_html_e( 'An educational video from the Chartered Society of Physiotherapy explaining the value of professional chartered status. It does not describe or verify HomeCarePhysioUK staff credentials.', 'homecarephysio' ); ?></p></div>
+		<div class="trust-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/LKQ5HIEhfQ4" title="<?php esc_attr_e( 'The Chartered Society of Physiotherapy explains the value of chartered status', 'homecarephysio' ); ?>" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+	</section>
 	<section class="front-content content-wrap">
 		<?php
 		while ( have_posts() ) :

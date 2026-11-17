@@ -115,3 +115,22 @@ test("inner pages have accessible photo heroes, breadcrumbs, enquiries and share
   assert.match(fs.readFileSync(path.join(theme, "footer.php"), "utf8"), /manojprasad1984@gmail\.com/);
   assert.match(fs.readFileSync(path.join(theme, "front-page.php"), "utf8"), /assets\/videos\/physio-1-sample\.mp4/);
 });
+
+test("homepage has a Google profile connection, trust video and recruitment image", () => {
+  const front = fs.readFileSync(path.join(theme, "front-page.php"), "utf8");
+  const functions = fs.readFileSync(path.join(theme, "functions.php"), "utf8");
+  const seeder = fs.readFileSync(path.join(theme, "seed-pages.php"), "utf8");
+  const styles = fs.readFileSync(path.join(theme, "assets", "css", "site.css"), "utf8");
+  assert.match(front, /Trusted by Our Patients/);
+  assert.match(front, /get_option\( 'homecarephysio_google_reviews_embed'/);
+  assert.match(front, /Physiotherapy you can trust/);
+  assert.match(front, /youtube-nocookie\.com\/embed\/LKQ5HIEhfQ4/);
+  assert.match(front, /does not describe or verify HomeCarePhysioUK staff credentials/);
+  assert.match(functions, /homecarephysio_sanitize_review_embed/);
+  assert.match(functions, /\/maps\/embed/);
+  assert.match(seeder, /Join our expert team/);
+  assert.match(seeder, /page-team\.jpg/);
+  assert.match(styles, /\.trusted-patients/);
+  assert.match(styles, /\.trust-video-frame/);
+  assert.match(styles, /\.careers-callout>img/);
+});
