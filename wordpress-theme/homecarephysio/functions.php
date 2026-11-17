@@ -32,6 +32,33 @@ function homecarephysio_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'homecarephysio_enqueue_assets' );
 
+/** Send a short triage-call request without collecting clinical details. */
+function homecarephysio_handle_triage_request() {
+	if ( ! isset( $_POST['homecare_triage_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['homecare_triage_nonce'] ) ), 'homecare_triage_request' ) ) {
+		wp_die( esc_html__( 'The request could not be verified. Please return to the contact page and try again.', 'homecarephysio' ) );
+	}
+
+	$name    = isset( $_POST['triage_name'] ) ? sanitize_text_field( wp_unslash( $_POST['triage_name'] ) ) : '';
+	$email   = isset( $_POST['triage_email'] ) ? sanitize_email( wp_unslash( $_POST['triage_email'] ) ) : '';
+	$phone   = isset( $_POST['triage_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['triage_phone'] ) ) : '';
+	$postcode = isset( $_POST['triage_postcode'] ) ? sanitize_text_field( wp_unslash( $_POST['triage_postcode'] ) ) : '';
+	$consent = isset( $_POST['triage_consent'] );
+	$status  = 'invalid';
+
+	if ( $name && is_email( $email ) && $phone && $consent ) {
+		$recipient = 'manojprasad1984@gmail.com';
+		$subject   = 'Free 15-minute triage call request';
+		$message   = "A visitor requested a free 15-minute triage call.\n\nName: {$name}\nEmail: {$email}\nPhone: {$phone}\nPostcode: {$postcode}\n\nNo clinical details were requested.";
+		$headers   = array( 'Reply-To: ' . $name . ' <' . $email . '>' );
+		$status    = wp_mail( $recipient, $subject, $message, $headers ) ? 'sent' : 'failed';
+	}
+
+	wp_safe_redirect( add_query_arg( 'triage', $status, home_url( '/contact/#triage-form' ) ) );
+	exit;
+}
+add_action( 'admin_post_nopriv_homecarephysio_triage_request', 'homecarephysio_handle_triage_request' );
+add_action( 'admin_post_homecarephysio_triage_request', 'homecarephysio_handle_triage_request' );
+
 function homecarephysio_menu_fallback() {
 	wp_page_menu(
 		array(

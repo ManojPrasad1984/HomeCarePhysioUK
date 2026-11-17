@@ -25,6 +25,8 @@
 		</nav>
 		<nav aria-label="<?php esc_attr_e( 'Contact and updates', 'homecarephysio' ); ?>">
 			<h2><?php esc_html_e( 'Contact', 'homecarephysio' ); ?></h2>
+			<p><a href="tel:+919766627404">+91 97666 27404</a></p>
+			<p><a href="mailto:manojprasad1984@gmail.com">manojprasad1984@gmail.com</a></p>
 			<p><?php esc_html_e( 'Get in touch to ask about the service and practical arrangements.', 'homecarephysio' ); ?></p>
 			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact us', 'homecarephysio' ); ?> <span aria-hidden="true">→</span></a>
 			<a href="<?php echo esc_url( home_url( '/articles/' ) ); ?>"><?php esc_html_e( 'Articles and updates', 'homecarephysio' ); ?></a>

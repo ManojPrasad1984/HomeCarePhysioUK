@@ -6,7 +6,10 @@ const test = require("node:test");
 const theme = path.resolve(__dirname, "..", "homecarephysio");
 const expectedSlugs = [
   "home", "how-we-help", "services", "our-physios", "pricing", "about-us", "conditions", "locations",
-  "faqs", "our-approach", "testimonials", "join-our-team", "contact", "articles", "terms", "privacy"
+  "faqs", "our-approach", "testimonials", "join-our-team", "contact", "articles", "terms", "privacy",
+  "care-home-physiotherapy", "falls-prevention-balance", "home-visits-all-ages", "joint-muscle-pain",
+  "mobility-walking-rehabilitation", "neurological-physiotherapy", "occupational-health-physiotherapy",
+  "post-operative-rehabilitation", "sports-injury-rehabilitation"
 ];
 
 test("theme has the required WordPress entry points and assets", () => {
@@ -16,12 +19,13 @@ test("theme has the required WordPress entry points and assets", () => {
   assert.match(fs.readFileSync(path.join(theme, "style.css"), "utf8"), /Theme Name: HomeCare Physio/);
   assert.ok(fs.existsSync(path.join(theme, "assets", "css", "site.css")));
   assert.ok(fs.existsSync(path.join(theme, "assets", "js", "site.js")));
-  for (const image of ["home-banner-v2.jpg", "home-visit-hero.jpg", "physio-mobility.jpg", "physio-consultation.jpg", "page-home-care.jpg", "page-team.jpg", "page-outdoor.jpg"]) {
+  for (const image of ["home-banner-v2.jpg", "home-visit-hero.jpg", "physio-mobility.jpg", "physio-consultation.jpg", "page-home-care.jpg", "page-team.jpg", "page-outdoor.jpg", "physio-1-poster.jpg"]) {
     assert.ok(fs.existsSync(path.join(theme, "assets", "images", image)), `missing ${image}`);
   }
+  assert.ok(fs.existsSync(path.join(theme, "assets", "videos", "physio-1-sample.mp4")));
 });
 
-test("page seeder defines exactly the 16 requested page slugs", () => {
+test("page seeder defines the 16 core and 9 service page slugs", () => {
   const seed = fs.readFileSync(path.join(theme, "seed-pages.php"), "utf8");
   const actualSlugs = [...seed.matchAll(/'slug'\s*=>\s*'([^']+)'/g)].map((match) => match[1]);
   assert.deepEqual(actualSlugs, expectedSlugs);
@@ -77,7 +81,7 @@ test("inner pages have accessible photo heroes, breadcrumbs, enquiries and share
   const page = fs.readFileSync(path.join(theme, "page.php"), "utf8");
   const styles = fs.readFileSync(path.join(theme, "assets", "css", "site.css"), "utf8");
   const script = fs.readFileSync(path.join(theme, "assets", "js", "site.js"), "utf8");
-  for (const slug of ["how-we-help", "services", "our-physios", "pricing", "about-us", "conditions", "locations", "faqs", "our-approach", "testimonials", "join-our-team", "contact", "articles", "terms", "privacy"]) {
+  for (const slug of ["how-we-help", "services", "our-physios", "pricing", "about-us", "conditions", "locations", "faqs", "our-approach", "testimonials", "join-our-team", "contact", "articles", "terms", "privacy", "care-home-physiotherapy", "falls-prevention-balance", "home-visits-all-ages", "joint-muscle-pain", "mobility-walking-rehabilitation", "neurological-physiotherapy", "occupational-health-physiotherapy", "post-operative-rehabilitation", "sports-injury-rehabilitation"]) {
     assert.match(page, new RegExp(`'${slug}'\\s*=>\\s*array\\(\\s*'image'`), `${slug} needs an image banner`);
   }
   assert.match(page, /breadcrumbs/);
@@ -96,5 +100,18 @@ test("inner pages have accessible photo heroes, breadcrumbs, enquiries and share
   const seeder = fs.readFileSync(path.join(theme, "seed-pages.php"), "utf8");
   assert.match(seeder, /A suggested care journey based on the reference pattern/);
   assert.match(seeder, /Draft service categories informed by common home-physiotherapy pathways/);
+  assert.match(seeder, /data-faq-search/);
+  const faqBlock = seeder.match(/\$faq_items\s*=\s*array\(([\s\S]*?)\n\);/);
+  assert.ok(faqBlock, "missing FAQ data");
+  assert.equal((faqBlock[1].match(/\barray\(/g) || []).length, 25, "FAQ page should provide 25 questions");
+  assert.match(seeder, /data-faq-list/);
+  assert.match(seeder, /Six home physiotherapy sessions/);
+  assert.match(seeder, /£730/);
+  assert.match(seeder, /First visit satisfaction guarantee/);
+  assert.match(seeder, /15-minute triage/);
+  assert.match(page, /homecarephysio_handle_triage_request|triage-form/);
+  assert.match(fs.readFileSync(path.join(theme, "functions.php"), "utf8"), /admin_post_nopriv_homecarephysio_triage_request/);
+  assert.match(fs.readFileSync(path.join(theme, "header.php"), "utf8"), /tel:\+919766627404/);
+  assert.match(fs.readFileSync(path.join(theme, "footer.php"), "utf8"), /manojprasad1984@gmail\.com/);
+  assert.match(fs.readFileSync(path.join(theme, "front-page.php"), "utf8"), /assets\/videos\/physio-1-sample\.mp4/);
 });
-

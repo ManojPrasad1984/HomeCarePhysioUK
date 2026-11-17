@@ -34,6 +34,27 @@
 }());
 
 (function () {
+  const search = document.querySelector("[data-faq-search]");
+  const list = document.querySelector("[data-faq-list]");
+  const count = document.querySelector("[data-faq-count]");
+  if (!search || !list) return;
+
+  const items = Array.from(list.querySelectorAll("details"));
+  const update = function () {
+    const query = search.value.trim().toLocaleLowerCase();
+    let visible = 0;
+    items.forEach(function (item) {
+      const matches = item.textContent.toLocaleLowerCase().includes(query);
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    if (count) count.textContent = visible + (visible === 1 ? " question" : " questions");
+  };
+
+  search.addEventListener("input", update);
+}());
+
+(function () {
   const sections = document.querySelectorAll(".front-content > section, .entry-content > section, .page-main > .inner-page-cta");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -52,4 +73,3 @@
     observer.observe(section);
   });
 }());
-

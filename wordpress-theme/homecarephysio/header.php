@@ -32,6 +32,6 @@
 	</nav>
 	<div class="header-actions">
 		<a class="header-enquire" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><span class="header-chat-icon" aria-hidden="true"></span><?php esc_html_e( 'Enquire Now', 'homecarephysio' ); ?></a>
-		<a class="header-contact" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact us', 'homecarephysio' ); ?></a>
+		<a class="header-contact" href="tel:+919766627404"><?php esc_html_e( '+91 97666 27404', 'homecarephysio' ); ?></a>
 	</div>
 </header>
