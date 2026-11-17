@@ -32,3 +32,29 @@ footer{background:#f0f2ed;padding:32px max(48px,calc((100vw - 1144px)/2)) 22px;c
 @media(max-width:800px){.site-header{height:auto;min-height:74px;padding:13px 22px;gap:16px;align-items:flex-start}nav{gap:13px;flex-wrap:wrap;justify-content:flex-end;font-size:11px}.home-hero{padding:48px 0 58px;grid-template-columns:1fr;gap:32px}.hero-copy{padding-left:0}.home-visual{height:350px}.page-hero{padding:55px 0 35px}.card-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:60px}.section-heading{margin-bottom:20px}.contact-banner{padding-top:32px;padding-bottom:32px}}
 @media(max-width:560px){.site-header{display:block;padding:13px 20px}.site-header>.brand{margin-bottom:11px}nav{justify-content:flex-start;gap:9px 14px}.nav-menu>div{left:0}.nav-cta{padding:5px 9px}h1{font-size:49px}h2{font-size:31px}.home-hero,.page-hero,.section-heading,.card-grid,.notice{margin-left:20px;margin-right:20px}.home-hero{padding-top:38px;gap:27px}.home-visual{height:315px}.visual-window{right:17px;transform:scale(.82);transform-origin:top right}.visual-chair{right:43px;transform:scale(.85);transform-origin:bottom right}.visual-plant{left:31px;transform:scale(.84);transform-origin:bottom left}.page-hero{padding-top:45px}.page-hero h1{font-size:43px}.card-grid{grid-template-columns:1fr;gap:11px;margin-bottom:55px}.info-card{min-height:145px}.steps,.faq-list,.text-sections{margin-left:20px;margin-right:20px}.steps li{grid-template-columns:42px 1fr;gap:10px}.contact-banner{padding:31px 20px;display:block}.contact-banner .button{margin-top:20px}.footer-top{align-items:flex-start;gap:15px}.footer-top p{max-width:145px}.footer-links{gap:9px 15px}.footer-bottom{display:grid}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+
+/* Align the Azure static preview with the current LocalWP homepage. */
+body:has(.home-hero-image) .site-header{max-width:none;height:96px;padding:0 max(32px,calc((100vw - 1240px)/2));background:#203a32;border:0;color:#fff}
+body:has(.home-hero-image) .brand{color:#fff;letter-spacing:.12em;font-size:14px}
+body:has(.home-hero-image) .brand-light{color:#e6ede7;font-weight:500}
+body:has(.home-hero-image) .brand-mark{color:#e6a06c;border-color:#b9c8bc}
+.brand-wordmark{display:grid;gap:1px}.brand-wordmark small{color:#e6a06c;font-size:9px;letter-spacing:0;font-weight:600}
+body:has(.home-hero-image) nav{color:#fff;gap:25px;font-size:13px}
+body:has(.home-hero-image) nav>a:hover{color:#e6a06c}
+body:has(.home-hero-image) .nav-cta{background:#e6a06c;color:#203a32;border:1px solid #e6a06c;border-radius:3px;padding:11px 17px;font-weight:700}
+body:has(.home-hero-image) .nav-phone{border:1px solid #e6a06c;border-radius:3px;padding:10px 15px;color:#fff;font-weight:600;white-space:nowrap}
+.home-hero-image{max-width:none;height:min(650px,calc(100vh - 96px));min-height:450px;padding:35px 24px;position:relative;display:grid;place-items:center;overflow:hidden;background:#344d45}
+.hero-banner-image,.hero-shade{position:absolute;inset:0;width:100%;height:100%}
+.hero-banner-image{object-fit:cover;object-position:center 43%}
+.hero-shade{background:linear-gradient(90deg,rgba(25,48,42,.66),rgba(25,48,42,.32) 58%,rgba(25,48,42,.08)),linear-gradient(0deg,rgba(25,48,42,.18),transparent 45%)}
+.home-hero-image .hero-copy{position:relative;z-index:1;width:min(900px,100%);padding:0;text-align:center;color:#fff}
+.home-hero-image .eyebrow{justify-content:center;color:#fff;font-size:11px;margin-bottom:19px}
+.home-hero-image h1{max-width:none;font-size:clamp(42px,5vw,68px);line-height:1.12;letter-spacing:-.035em;font-weight:700;margin:0 0 18px}
+.home-hero-image .lead{max-width:none;color:#fff;font-family:var(--serif);font-size:clamp(25px,3vw,40px);line-height:1.25;margin:0 0 30px}
+.home-hero-image .lead strong{font-family:var(--sans);font-weight:700;color:#e6a06c}
+.home-hero-image .hero-actions{justify-content:center}
+.home-hero-image .button{background:#e6a06c;color:#203a32;padding:14px 19px}
+.home-hero-image .text-link{color:#fff;border-color:#e6a06c}
+.home-hero-image .small-note{color:#f1eee5}
+@media(max-width:800px){body:has(.home-hero-image) .site-header{height:auto;min-height:96px;padding:16px 24px;align-items:center}body:has(.home-hero-image) nav{gap:12px}}
+@media(max-width:560px){body:has(.home-hero-image) .site-header{padding:14px 20px}body:has(.home-hero-image) nav{justify-content:flex-start}.home-hero-image{height:560px;min-height:0;padding:30px 20px}.hero-banner-image{object-position:62% center}.hero-shade{background:linear-gradient(90deg,rgba(25,48,42,.68),rgba(25,48,42,.3)),linear-gradient(0deg,rgba(25,48,42,.25),transparent 60%)}.home-hero-image .hero-copy{padding:0}.home-hero-image h1{font-size:43px}.home-hero-image .lead{font-size:27px}}
